@@ -35,10 +35,11 @@ if __name__ == "__main__":
 
     #C = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     with mlflow.start_run():
+        C=1
         model = LogisticRegression(C=C)
         model.fit(X_train, y_train)
         predictions =  model.predict(X_test)
-        mlflow.log_param("C", C)
+        #mlflow.log_param("C", C)
     
         test_accuracy = accuracy_score(y_test, predictions)
         test_precision_score = precision_score(y_test, predictions)
