@@ -28,18 +28,17 @@ if __name__ == "__main__":
     train, test = train_test_split(data)
 
     # The predicted column is "quality" which is a scalar from [3, 9]
-    train_x = train.drop(["loan_approval_status"], axis=1)
-    test_x = test.drop(["loan_approval_status"], axis=1)
-    train_y = train[["loan_approval_status"]]
-    test_y = test[["loan_approval_status"]]
+    X_train= train.drop(["loan_approval_status"], axis=1)
+    X_test = test.drop(["loan_approval_status"], axis=1)
+    y_train = train[["loan_approval_status"]]
+    y_test = test[["loan_approval_status"]]
 
-    
-
+    C = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     with mlflow.start_run():
-        model = LogisticRegression()
+        model = LogisticRegression(C=C)
         model.fit(X_train, y_train)
         predictions =  model.predict(X_test)
-        #mlflow.log_param("C", C)
+        mlflow.log_param("C", C)
     
         test_accuracy = accuracy_score(y_test, predictions)
         test_precision_score = precision_score(y_test, predictions)
