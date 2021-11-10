@@ -40,7 +40,7 @@ if __name__ == "__main__":
         model = LogisticRegression()
         model.fit(X_train, y_train)
         predictions =  model.predict(X_test)
-        mlflow.log_param("C", C)
+        #mlflow.log_param("C", C)
     
         test_accuracy = accuracy_score(y_test, predictions)
         test_precision_score = precision_score(y_test, predictions)
