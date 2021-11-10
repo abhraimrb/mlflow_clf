@@ -21,7 +21,7 @@ if __name__ == "__main__":
     np.random.seed(40)
 
     # Read the wine-quality csv file (make sure you're running this from the root of MLflow!)
-    loan_approval_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "clientes.csv")
+    loan_approval_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cust_data_processed.csv")
     data = pd.read_csv( loan_approval_path )
 
     # Split the data into training and test sets. (0.75, 0.25) split.
@@ -33,15 +33,13 @@ if __name__ == "__main__":
     train_y = train[["loan_approval_status"]]
     test_y = test[["loan_approval_status"]]
 
-    C = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
-    #l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
+    
 
     with mlflow.start_run():
-        C=0.5
-        model = LogisticRegression(C=C)
+        model = LogisticRegression()
         model.fit(X_train, y_train)
         predictions =  model.predict(X_test)
-        mlflow.log_param("C", C)
+        #mlflow.log_param("C", C)
     
         test_accuracy = accuracy_score(y_test, predictions)
         test_precision_score = precision_score(y_test, predictions)
@@ -53,9 +51,6 @@ if __name__ == "__main__":
     
   # Log the value of the metric from this run.
         mlflow.log_metrics(metrics )
-   
-    
-    #mlflow.set_tag("Classifier", "Random Forest")
     
        mlflow.set_tag("Classifier", "LR-tuned parameters-wo autolog")
        
