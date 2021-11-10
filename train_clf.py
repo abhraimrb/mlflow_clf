@@ -37,6 +37,7 @@ if __name__ == "__main__":
     #l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
 
     with mlflow.start_run():
+        C=1
         model = LogisticRegression(C=C)
         model.fit(X_train, y_train)
         predictions =  model.predict(X_test)
