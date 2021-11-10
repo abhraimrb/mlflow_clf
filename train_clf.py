@@ -33,7 +33,7 @@ if __name__ == "__main__":
     y_train = train[["loan_approval_status"]]
     y_test = test[["loan_approval_status"]]
 
-    C = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
+    #C = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
     with mlflow.start_run():
         model = LogisticRegression(C=C)
         model.fit(X_train, y_train)
