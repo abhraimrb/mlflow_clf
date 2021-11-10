@@ -51,9 +51,9 @@ if __name__ == "__main__":
   # Log the value of the metric from this run.
         mlflow.log_metrics(metrics )
     
-       mlflow.set_tag("Classifier", "LR-tuned parameters-wo autolog")
+        mlflow.set_tag("Classifier", "LR-tuned parameters-wo autolog")
        
-       mlflow.sklearn.log_model(model, "LR-tuned parameters-wo autolog")
+        mlflow.sklearn.log_model(model, "LR-tuned parameters-wo autolog")
         
         
 
