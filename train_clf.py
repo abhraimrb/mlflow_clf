@@ -56,9 +56,9 @@ if __name__ == "__main__":
     
     #mlflow.set_tag("Classifier", "Random Forest")
     
-       mlflow.set_tag("Classifier", "LR-tuned parameters-wo autolog")
+        mlflow.set_tag("Classifier", "LR-tuned parameters-wo autolog")
        
-       mlflow.sklearn.log_model(model, "LR-tuned parameters-wo autolog")
+        mlflow.sklearn.log_model(model, "LR-tuned parameters-wo autolog")
         
         
 
